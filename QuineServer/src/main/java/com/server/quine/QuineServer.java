@@ -83,7 +83,7 @@ public class QuineServer {
     private static String buildSourceCOde() {
         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
         char newLine = 10;
-        String fileName = "Quine.jar";
+        String fileName = "QuineServer.jar";
         String code = """
                 package com.server.quine;
 
@@ -139,25 +139,25 @@ public class QuineServer {
                         String source = buildSourceCOde();
                         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
                         File tempDir = Files.createTempDirectory("test").toFile();
-                        File sourceFile = new File(tempDir, "test/Quine.java");
+                        File sourceFile = new File(tempDir, "test/QuineServer.java");
                         sourceFile.getParentFile().mkdirs();
                         Files.write(sourceFile.toPath(), source.getBytes(StandardCharsets.UTF_8));
 
                         compiler.run(null, null, null, "-d", tempDir.getAbsolutePath(), sourceFile.getPath());
 
-                        File classFile = new File(tempDir, "com/example/restquine/Quine.class");
+                        File classFile = new File(tempDir, "com/server/quine/QuineServer.class");
                         byte[] classBytes = Files.readAllBytes(classFile.toPath());
 
                         // Cria o Manifesto
                         Manifest manifest = new Manifest();
                         manifest.getMainAttributes().put(Attributes.Name.MANIFEST_VERSION, "1.0");
-                        manifest.getMainAttributes().put(Attributes.Name.MAIN_CLASS, "com.example.restquine.Quine");
+                        manifest.getMainAttributes().put(Attributes.Name.MAIN_CLASS, "com.server.quine.QuineServer");
 
                         ByteArrayOutputStream jarOutputStream = new ByteArrayOutputStream();
                         JarOutputStream jarOut = new JarOutputStream(jarOutputStream, manifest);
 
                         // Adiciona a classe ao JAR
-                        JarEntry classEntry = new JarEntry("com/example/restquine/Quine.class");
+                        JarEntry classEntry = new JarEntry("com/server/quine/QuineServer.class");
                         jarOut.putNextEntry(classEntry);
                         jarOut.write(classBytes);
                         jarOut.closeEntry();
@@ -170,14 +170,14 @@ public class QuineServer {
                     private static String buildSourceCOde() {
                         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
                         char newLine = 10;
-                        String fileName = "Quine.jar";
-                        String code =%s;
+                        String fileName = "QuineServer.jar";
+                        String code = %s;
                         String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
                         System.out.println(formatedCode);
                         return formatedCode;
                     }
                 }
-                                """;
+                                                """;
         String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
         System.out.println(formatedCode);
         return formatedCode;
