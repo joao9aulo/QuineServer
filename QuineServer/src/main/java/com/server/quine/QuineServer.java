@@ -35,7 +35,7 @@ public class QuineServer {
                 writer.println("Date: " + new java.util.Date());
                 writer.println("Content-type: application/java-archive");
                 writer.println("Content-length: " + jarOutputStream.toByteArray().length);
-                writer.println("Content-Disposition: attachment; filename=\"Quine.jar\"");
+                writer.println("Content-Disposition: attachment; filename=\"QuineServer.jar\"");
                 writer.println(); // Linha em branco entre os cabeçalhos e o conteúdo
                 writer.flush();
 
@@ -52,25 +52,25 @@ public class QuineServer {
         String source = buildSourceCOde();
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         File tempDir = Files.createTempDirectory("test").toFile();
-        File sourceFile = new File(tempDir, "test/Quine.java");
+        File sourceFile = new File(tempDir, "test/QuineServer.java");
         sourceFile.getParentFile().mkdirs();
         Files.write(sourceFile.toPath(), source.getBytes(StandardCharsets.UTF_8));
 
         compiler.run(null, null, null, "-d", tempDir.getAbsolutePath(), sourceFile.getPath());
 
-        File classFile = new File(tempDir, "com/example/restquine/Quine.class");
+        File classFile = new File(tempDir, "com/server/quine/QuineServer.class");
         byte[] classBytes = Files.readAllBytes(classFile.toPath());
 
         // Cria o Manifesto
         Manifest manifest = new Manifest();
         manifest.getMainAttributes().put(Attributes.Name.MANIFEST_VERSION, "1.0");
-        manifest.getMainAttributes().put(Attributes.Name.MAIN_CLASS, "com.example.restquine.Quine");
+        manifest.getMainAttributes().put(Attributes.Name.MAIN_CLASS, "com.server.quine.QuineServer");
 
         ByteArrayOutputStream jarOutputStream = new ByteArrayOutputStream();
         JarOutputStream jarOut = new JarOutputStream(jarOutputStream, manifest);
 
         // Adiciona a classe ao JAR
-        JarEntry classEntry = new JarEntry("com/example/restquine/Quine.class");
+        JarEntry classEntry = new JarEntry("com/server/quine/QuineServer.class");
         jarOut.putNextEntry(classEntry);
         jarOut.write(classBytes);
         jarOut.closeEntry();
