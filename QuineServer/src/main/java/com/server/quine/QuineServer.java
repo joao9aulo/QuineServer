@@ -85,7 +85,7 @@ public class QuineServer {
         char newLine = 10;
         String fileName = "Quine.jar";
         String code = """
-                package com.example.restquine;
+                package com.server.quine;
 
                 import javax.tools.JavaCompiler;
                 import javax.tools.ToolProvider;
@@ -99,7 +99,7 @@ public class QuineServer {
                 import java.util.jar.JarOutputStream;
                 import java.util.jar.Manifest;
 
-                public class Quine {
+                public class QuineServer {
 
                     public static void main(String[] args) throws IOException {
                         // Cria um arquivo JAR
@@ -171,13 +171,13 @@ public class QuineServer {
                         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
                         char newLine = 10;
                         String fileName = "Quine.jar";
-                        String code = %s;
+                        String code =%s;
                         String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
                         System.out.println(formatedCode);
                         return formatedCode;
                     }
                 }
-                """;
+                                """;
         String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
         System.out.println(formatedCode);
         return formatedCode;
