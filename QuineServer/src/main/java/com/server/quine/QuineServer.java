@@ -173,13 +173,11 @@ public class QuineServer {
                         String fileName = "QuineServer.jar";
                         String code = %s;
                         String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
-                        System.out.println(formatedCode);
                         return formatedCode;
                     }
                 }
                                                 """;
         String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
-        System.out.println(formatedCode);
         return formatedCode;
     }
 }
