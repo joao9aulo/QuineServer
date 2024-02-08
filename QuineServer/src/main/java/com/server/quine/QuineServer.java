@@ -49,7 +49,7 @@ public class QuineServer {
     }
 
     private static ByteArrayOutputStream createJarFile() throws IOException {
-        String source = buildSourceCOde();
+        String source = buildSourceCode();
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         File tempDir = Files.createTempDirectory("test").toFile();
         File sourceFile = new File(tempDir, "test/QuineServer.java");
@@ -80,7 +80,7 @@ public class QuineServer {
         return jarOutputStream;
     }
 
-    private static String buildSourceCOde() {
+    private static String buildSourceCode() {
         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
         char newLine = 10;
         String fileName = "QuineServer.jar";
@@ -136,7 +136,7 @@ public class QuineServer {
                     }
 
                     private static ByteArrayOutputStream createJarFile() throws IOException {
-                        String source = buildSourceCOde();
+                        String source = buildSourceCode();
                         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
                         File tempDir = Files.createTempDirectory("test").toFile();
                         File sourceFile = new File(tempDir, "test/QuineServer.java");
@@ -167,7 +167,7 @@ public class QuineServer {
                         return jarOutputStream;
                     }
 
-                    private static String buildSourceCOde() {
+                    private static String buildSourceCode() {
                         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
                         char newLine = 10;
                         String fileName = "QuineServer.jar";
