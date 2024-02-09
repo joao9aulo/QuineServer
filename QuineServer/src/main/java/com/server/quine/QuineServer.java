@@ -35,7 +35,7 @@ public class QuineServer {
                 writer.println("Date: " + new java.util.Date());
                 writer.println("Content-type: application/java-archive");
                 writer.println("Content-length: " + jarOutputStream.toByteArray().length);
-                writer.println("Content-Disposition: attachment; filename=\"QuineServer.jar\"");
+                writer.println("Content-Disposition: attachment; filename=QuineServer.jar");
                 writer.println(); // Linha em branco entre os cabeçalhos e o conteúdo
                 writer.flush();
 
@@ -83,7 +83,7 @@ public class QuineServer {
     private static String buildSourceCode() {
         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
         char newLine = 10;
-        String fileName = "QuineServer.jar";
+        //String fileName = "QuineServer.jar";
         String code = """
                 package com.server.quine;
 
@@ -122,7 +122,7 @@ public class QuineServer {
                                 writer.println("Date: " + new java.util.Date());
                                 writer.println("Content-type: application/java-archive");
                                 writer.println("Content-length: " + jarOutputStream.toByteArray().length);
-                                writer.println("Content-Disposition: attachment; filename=%s");
+                                writer.println("Content-Disposition: attachment; filename=QuineServer.jar");
                                 writer.println(); // Linha em branco entre os cabeçalhos e o conteúdo
                                 writer.flush();
 
@@ -170,14 +170,14 @@ public class QuineServer {
                     private static String buildSourceCode() {
                         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
                         char newLine = 10;
-                        String fileName = "QuineServer.jar";
+                        //String fileName = "QuineServer.jar";
                         String code = %s;
-                        String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
+                        String formatedCode = code.formatted( textBlockQuotes + newLine + code + textBlockQuotes);
                         return formatedCode;
                     }
                 }
                                                 """;
-        String formatedCode = code.formatted(fileName, textBlockQuotes + newLine + code + textBlockQuotes);
+        String formatedCode = code.formatted(textBlockQuotes + newLine + code + textBlockQuotes);
         return formatedCode;
     }
 }
