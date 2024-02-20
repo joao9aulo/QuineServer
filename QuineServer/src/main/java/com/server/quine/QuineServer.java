@@ -83,7 +83,6 @@ public class QuineServer {
     private static String buildSourceCode() {
         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
         char newLine = 10;
-        //String fileName = "QuineServer.jar";
         String code = """
                 package com.server.quine;
 
@@ -170,7 +169,6 @@ public class QuineServer {
                     private static String buildSourceCode() {
                         String textBlockQuotes = new String(new char[]{'"', '"', '"'});
                         char newLine = 10;
-                        //String fileName = "QuineServer.jar";
                         String code = %s;
                         String formatedCode = code.formatted( textBlockQuotes + newLine + code + textBlockQuotes);
                         return formatedCode;
